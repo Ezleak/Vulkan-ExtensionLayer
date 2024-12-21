@@ -160,3 +160,7 @@ jobs:
         run: cmake --build build/
       - name: Install
         run: cmake --install build --prefix build/install
+      - name: Uplod
+        uses: actions/upload-artifact@v4
+        with:
+          path: build/
