@@ -147,12 +147,12 @@ jobs:
           key: android-${{ matrix.abi }}-${{ matrix.build_tests }}-${{ matrix.stl_type }}
       - name: Configure
         run: |
-          cmake -S . -B build/ --toolchain $ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
+          CFLAGS="$CFLAGS -Ofast" CPPFLAGS="$CPPFLAGS -Ofast" cmake -S . -B build/ --toolchain $ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
           -D ANDROID_PLATFORM=26 \
           -D CMAKE_ANDROID_ARCH_ABI=${{ matrix.abi }} \
           -D CMAKE_ANDROID_STL_TYPE=${{ matrix.stl_type }} \
           -D ANDROID_USE_LEGACY_TOOLCHAIN_FILE=NO \
-          -D CMAKE_BUILD_TYPE=Debug \
+          -D CMAKE_BUILD_TYPE=Release \
           -D BUILD_TESTS=${{ matrix.build_tests }} \
           -D UPDATE_DEPS=ON \
           -D BUILD_WERROR=ON
